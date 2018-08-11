@@ -7,6 +7,7 @@ services:
       context: elasticsearch/
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -29,6 +30,26 @@ services:
       - elk
     depends_on:
       - elasticsearch
+
+  # filebeat:
+  #   build:
+  #     context: filebeat/
+  #   volumes:
+  #     - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+  #   networks:
+  #     - host
+  #   depends_on:
+  #     - elasticsearch
+
+  # metricbeat:
+  #   build:
+  #     context: metricbeat/
+  #   volumes:
+  #     - ./metric/config/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
+  #   networks:
+  #     - host
+  #   depends_on:
+  #     - elasticsearch
 
   kibana:
     build:

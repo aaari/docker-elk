@@ -1,0 +1,17 @@
+metricbeat.modules:
+- module: system
+  metricsets:
+    # CPU stats
+    - cpu
+
+    # Network stats
+    - network
+
+  enabled: true
+  period: 10s
+  processes: ['.*']
+
+output.elasticsearch:
+     # Array of hosts to connect to.
+     # elasticsearchのホスト+port
+     hosts: ["localhost:9200"]
